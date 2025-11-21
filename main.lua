@@ -2,6 +2,7 @@ love.graphics.setDefaultFilter("nearest", "nearest")
 
 local constants = require("src.constants")
 local ui = require("src.ui")
+
 local gameModule = require("src.game")
 
 local app = {
@@ -9,7 +10,6 @@ local app = {
   game = nil,
   font = nil,
   smallFont = nil,
-}
 
 local function drawHand()
   local padding = constants.PADDING
@@ -17,7 +17,7 @@ local function drawHand()
   local y = constants.BASE_HEIGHT - constants.CARD_HEIGHT - padding
   for i, c in ipairs(app.game.state.hand) do
     local x = startX + (i - 1) * (constants.CARD_WIDTH + constants.CARD_SPACING)
-    ui.drawCard(c, x, y, c.selected)
+
   end
 end
 
@@ -60,8 +60,6 @@ function love.load()
   app.font = love.graphics.newFont(12)
   app.smallFont = love.graphics.newFont(10)
   love.graphics.setFont(app.font)
-  app.game = gameModule.new()
-end
 
 function love.resize()
   app.ui:resize()

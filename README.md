@@ -9,6 +9,7 @@ A pixel-perfect inspired Balatro clone built with [LÖVE 11](https://love2d.org/
 - Balatro-style scoring: each hand grants chips and a multiplier; meet blind targets to advance antes.
 - Play/discard limits per blind and quick keyboard controls.
 
+
 ## Controls
 - **Left Click**: select/unselect cards.
 - **Space**: play the selected five-card hand.
