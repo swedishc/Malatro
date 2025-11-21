@@ -8,12 +8,7 @@ A pixel-perfect inspired Balatro clone built with [LÖVE 11](https://love2d.org/
 - Poker hand detection (pair, two pair, three of a kind, straight, flush, full house, four of a kind, straight flush).
 - Balatro-style scoring: each hand grants chips and a multiplier; meet blind targets to advance antes.
 - Play/discard limits per blind and quick keyboard controls.
-- Content scaffolding is in place for richer items (jokers, tarot, enhanced/spectrum cards), but only the base deck and a baseline joker visual are currently implemented.
 
-## Assets and visuals
-- Card faces, backs, and a baseline joker are procedurally painted into canvases at runtime to stay pixel sharp without downloading external art.
-- A helper (`tools/generate_cards.py`) can export those canvases to PNGs if Pillow is available; offline environments fall back to the runtime painter automatically.
-- A light spring system nudges cards into place and lifts selections to mimic Balatro’s tactile table feel.
 
 ## Controls
 - **Left Click**: select/unselect cards.

@@ -2,7 +2,7 @@ love.graphics.setDefaultFilter("nearest", "nearest")
 
 local constants = require("src.constants")
 local ui = require("src.ui")
-local assetsModule = require("src.assets")
+
 local gameModule = require("src.game")
 
 local app = {
@@ -10,25 +10,6 @@ local app = {
   game = nil,
   font = nil,
   smallFont = nil,
-  assets = nil,
-}
-
-local function applySpring(card, targetX, targetY, dt)
-  card.visual = card.visual or { x = targetX, y = constants.BASE_HEIGHT + constants.CARD_HEIGHT, vx = 0, vy = 0 }
-  card.visual.tx = targetX
-  card.visual.ty = targetY
-  local stiffness = 22
-  local damping = 6
-
-  local dx = card.visual.tx - card.visual.x
-  local dy = card.visual.ty - card.visual.y
-  card.visual.vx = card.visual.vx + dx * stiffness * dt
-  card.visual.vy = card.visual.vy + dy * stiffness * dt
-  card.visual.vx = card.visual.vx * math.exp(-damping * dt)
-  card.visual.vy = card.visual.vy * math.exp(-damping * dt)
-  card.visual.x = card.visual.x + card.visual.vx * dt
-  card.visual.y = card.visual.y + card.visual.vy * dt
-end
 
 local function drawHand()
   local padding = constants.PADDING
@@ -36,8 +17,7 @@ local function drawHand()
   local y = constants.BASE_HEIGHT - constants.CARD_HEIGHT - padding
   for i, c in ipairs(app.game.state.hand) do
     local x = startX + (i - 1) * (constants.CARD_WIDTH + constants.CARD_SPACING)
-    local sprite = app.assets.cards[assetsModule.getKey(c)] or app.assets.back
-    ui.drawCard(sprite, c.visual and c.visual.x or x, c.visual and c.visual.y or y, c.selected)
+
   end
 end
 
@@ -80,20 +60,6 @@ function love.load()
   app.font = love.graphics.newFont(12)
   app.smallFont = love.graphics.newFont(10)
   love.graphics.setFont(app.font)
-  app.assets = assetsModule.new()
-  app.game = gameModule.new()
-end
-
-function love.update(dt)
-  local padding = constants.PADDING
-  local startX = padding
-  local y = constants.BASE_HEIGHT - constants.CARD_HEIGHT - padding
-  for i, c in ipairs(app.game.state.hand) do
-    local x = startX + (i - 1) * (constants.CARD_WIDTH + constants.CARD_SPACING)
-    local offset = c.selected and 8 or 0
-    applySpring(c, x, y - offset, dt)
-  end
-end
 
 function love.resize()
   app.ui:resize()

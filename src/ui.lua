@@ -40,12 +40,7 @@ function ui.drawPanel(x, y, w, h)
   love.graphics.setColor(1, 1, 1)
 end
 
-function ui.drawCard(cardImage, x, y, selected)
-  local offset = selected and 2 or 0
-  love.graphics.setColor(0.08, 0.11, 0.12, 0.4)
-  love.graphics.rectangle("fill", x + 2, y - offset + 4, constants.CARD_WIDTH, constants.CARD_HEIGHT, 3)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.draw(cardImage, x, y - offset)
+
 end
 
 return ui

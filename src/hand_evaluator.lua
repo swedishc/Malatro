@@ -67,18 +67,14 @@ local function bestHand(cards)
     return constants.POKER_HANDS[9]
   end
 
-  local three, pairCount = false, 0
+
   for _, v in pairs(rankCounts) do
     if v == 4 then
       return constants.POKER_HANDS[8]
     elseif v == 3 then
       three = true
     elseif v == 2 then
-      pairCount = pairCount + 1
-    end
-  end
 
-  if three and pairCount == 1 then
     return constants.POKER_HANDS[7]
   elseif flush then
     return constants.POKER_HANDS[6]
@@ -86,9 +82,7 @@ local function bestHand(cards)
     return constants.POKER_HANDS[5]
   elseif three then
     return constants.POKER_HANDS[4]
-  elseif pairCount == 2 then
-    return constants.POKER_HANDS[3]
-  elseif pairCount == 1 then
+
     return constants.POKER_HANDS[2]
   else
     return constants.POKER_HANDS[1]
